@@ -1,225 +1,152 @@
-# SQL-Based-Business-Insights-for-Target
+# 🛒 SQL-Based-Business-Insights-for-Target
 
-Context:
+**Target** is a globally renowned brand and one of the leading retailers in the United States. It is known for delivering outstanding value, inspiration, innovation, and a superior guest experience—making it a preferred shopping destination for millions.
 
-**Target** is a globally renowned brand and a prominent retailer in the United States. Target makes itself a preferred shopping destination by offering outstanding value, inspiration, innovation and an exceptional guest experience that no other retailer can deliver.
+This business case focuses specifically on **Target's operations in Brazil**, offering insights derived from **100,000 orders placed between 2016 and 2018**. The dataset provides a comprehensive view across multiple dimensions including order status, pricing, payment and freight performance, customer location, product details, and customer reviews.
 
-This particular business case focuses on the operations of Target in Brazil and provides insightful information about 100,000 orders placed between 2016 and 2018. The dataset offers a comprehensive view of various dimensions including the order status, price, payment and freight performance, customer location, product attributes, and customer reviews.
+By analyzing this rich dataset, we can uncover valuable insights related to:
 
-By analyzing this extensive dataset, it becomes possible to gain valuable insights into Target's operations in Brazil. The information can shed light on various aspects of the business, such as order processing, pricing strategies, payment and shipping efficiency, customer demographics, product characteristics, and customer satisfaction levels.
+* Order processing and fulfillment
+* Pricing strategies
+* Payment and shipping efficiency
+* Customer demographics
+* Product attributes
+* Customer satisfaction
 
-___________________________________________________________________________________________________________
-The data is available in 8 csv files:
+---
 
-customers.csv
-sellers.csv
-order_items.csv
-geolocation.csv
-payments.csv
-reviews.csv
-orders.csv
-products.csv
-___________________________________________________________________________________________________________
+## 📂 Dataset
 
-The column description for these csv files is given below.
+The data is split across **8 CSV files**:
 
-**The **"customers.csv"** contain following features:**
+* `customers.csv`
+* `sellers.csv`
+* `order_items.csv`
+* `geolocation.csv`
+* `payments.csv`
+* `reviews.csv`
+* `orders.csv`
+* `products.csv`
 
-customer_id: ID of the consumer who made the purchase
+---
 
-customer_unique_id: Unique ID of the consumer
+## 🧾 Column Descriptions
+
+### `customers.csv`
+
+| **Feature**                | **Description**                               |
+| -------------------------- | --------------------------------------------- |
+| `customer_id`              | ID of the consumer who made the purchase      |
+| `customer_unique_id`       | Unique ID of the consumer                     |
+| `customer_zip_code_prefix` | Zip Code of consumer’s location               |
+| `customer_city`            | Name of the city from where the order is made |
+| `customer_state`           | State code (e.g., São Paulo - SP)             |
 
-customer_zip_code_prefix: Zip Code of consumer’s location
+---
 
-customer_city: Name of the City from where order is made
+### `sellers.csv`
 
-customer_state: State Code from where order is made (Eg. são paulo - SP)
-                                                                                          
-                                                                                          
-                                                                                          
-**The **"sellers.csv"** contains following features:**
+| **Feature**              | **Description**                   |
+| ------------------------ | --------------------------------- |
+| `seller_id`              | Unique ID of the seller           |
+| `seller_zip_code_prefix` | Zip Code of the seller’s location |
+| `seller_city`            | Name of the seller’s city         |
+| `seller_state`           | State code (e.g., São Paulo - SP) |
 
-seller_id: Unique ID of the seller registered
+---
 
-seller_zip_code_prefix: Zip Code of the seller’s location
+### `order_items.csv`
 
-seller_city: Name of the City of the seller
+| **Feature**           | **Description**                      |
+| --------------------- | ------------------------------------ |
+| `order_id`            | Unique ID of the order               |
+| `order_item_id`       | Unique ID for each item in the order |
+| `product_id`          | Unique ID of the product             |
+| `seller_id`           | Seller's unique ID                   |
+| `shipping_limit_date` | Deadline for shipping the product    |
+| `price`               | Price of the product                 |
+| `freight_value`       | Shipping cost                        |
 
-seller_state: State Code (Eg. são paulo - SP)
+---
 
+### `geolocation.csv`
 
-**The order_items.csv contain following features:**
+| **Feature**                   | **Description**                |
+| ----------------------------- | ------------------------------ |
+| `geolocation_zip_code_prefix` | First 5 digits of the ZIP code |
+| `geolocation_lat`             | Latitude                       |
+| `geolocation_lng`             | Longitude                      |
+| `geolocation_city`            | City                           |
+| `geolocation_state`           | State                          |
 
-order_id: A Unique ID of order made by the consumers
+---
 
-order_item_id: A Unique ID given to each item ordered in the order
+### `payments.csv`
 
-product_id: A Unique ID given to each product available on the site
+| **Feature**            | **Description**                                 |
+| ---------------------- | ----------------------------------------------- |
+| `order_id`             | Unique ID of the order                          |
+| `payment_sequential`   | Payment sequence (in case of multiple payments) |
+| `payment_type`         | Payment method (e.g., credit card)              |
+| `payment_installments` | Number of installments                          |
+| `payment_value`        | Total amount paid                               |
 
-seller_id: Unique ID of the seller registered in Target
+---
 
-shipping_limit_date: The date before which the ordered product must be shipped
+### `orders.csv`
 
-price: Actual price of the products ordered
+| **Feature**                     | **Description**                         |
+| ------------------------------- | --------------------------------------- |
+| `order_id`                      | Unique ID of the order                  |
+| `customer_id`                   | ID of the consumer                      |
+| `order_status`                  | Order status (e.g., delivered, shipped) |
+| `order_purchase_timestamp`      | Purchase timestamp                      |
+| `order_delivered_carrier_date`  | Date carrier received the product       |
+| `order_delivered_customer_date` | Actual delivery date to customer        |
+| `order_estimated_delivery_date` | Estimated delivery date                 |
+
+---
+
+### `reviews.csv`
+
+| **Feature**               | **Description**                     |
+| ------------------------- | ----------------------------------- |
+| `review_id`               | ID of the product review            |
+| `order_id`                | Order ID associated with the review |
+| `review_score`            | Customer rating (1–5 scale)         |
+| `review_comment_title`    | Review title                        |
+| `review_comment_message`  | Review content                      |
+| `review_creation_date`    | Date the review was created         |
+| `review_answer_timestamp` | Date the review was responded to    |
+
+---
+
+### `products.csv`
+
+| **Feature**                  | **Description**                   |
+| ---------------------------- | --------------------------------- |
+| `product_id`                 | Unique ID of the product          |
+| `product_category_name`      | Product category                  |
+| `product_name_lenght`        | Length of the product name        |
+| `product_description_lenght` | Length of the product description |
+| `product_photos_qty`         | Number of product photos          |
+| `product_weight_g`           | Weight in grams                   |
+| `product_length_cm`          | Length in cm                      |
+| `product_height_cm`          | Height in cm                      |
+| `product_width_cm`           | Width in cm                       |
+
+---
+
+## 🔍 Use Cases
+
+This dataset is ideal for:
+
+* Building machine learning models for delivery time prediction
+* Performing customer segmentation and behavior analysis
+* Exploring payment and shipping performance trends
+* Analyzing the impact of product features on reviews
+
+---
 
-freight_value: Price rate at which a product is delivered from one point to another
-
-**The geolocations.csv contain following features:**
-
-geolocation_zip_code_prefix
-
-First 5 digits of Zip Code
-
-geolocation_lat
-
-Latitude
-
-geolocation_lng
-
-Longitude
-
-geolocation_city
-
-City
-
-geolocation_state
-
-State
-
-The payments.csv contain following features:
-
-Features
-
-Description
-
-order_id
-
-A Unique ID of order made by the consumers
-
-payment_sequential
-
-Sequences of the payments made in case of EMI
-
-payment_type
-
-Mode of payment used (Eg. Credit Card)
-
-payment_installments
-
-Number of installments in case of EMI purchase
-
-payment_value
-
-Total amount paid for the purchase order
-
-The orders.csv contain following features:
-
-Features
-
-Description
-
-order_id
-
-A Unique ID of order made by the consumers
-
-customer_id
-
-ID of the consumer who made the purchase
-
-order_status
-
-Status of the order made i.e. delivered, shipped, etc.
-
-order_purchase_timestamp
-
-Timestamp of the purchase
-
-order_delivered_carrier_date
-
-Delivery date at which carrier made the delivery
-
-order_delivered_customer_date
-
-Date at which customer got the product
-
-order_estimated_delivery_date
-
-Estimated delivery date of the products
-
-The reviews.csv contain following features:
-
-Features
-
-Description
-
-review_id
-
-ID of the review given on the product ordered by the order id
-
-order_id
-
-A Unique ID of order made by the consumers
-
-review_score
-
-Review score given by the customer for each order on a scale of 1-5
-
-review_comment_title
-
-Title of the review
-
-review_comment_message
-
-Review comments posted by the consumer for each order
-
-review_creation_date
-
-Timestamp of the review when it is created
-
-review_answer_timestamp
-
-Timestamp of the review answered
-
-The products.csv contain following features:
-
-Features
-
-Description
-
-product_id
-
-A Unique identifier for the proposed project.
-
-product_category_name
-
-Name of the product category
-
-product_name_lenght
-
-Length of the string which specifies the name given to the products ordered
-
-product_description_lenght
-
-Length of the description written for each product ordered on the site
-
-product_photos_qty
-
-Number of photos of each product ordered available on the shopping portal
-
-product_weight_g
-
-Weight of the products ordered in grams
-
-product_length_cm
-
-Length of the products ordered in centimeters
-
-product_height_cm
-
-Height of the products ordered in centimeters
-
-product_width_cm
-
-Width of the product ordered in centimeters
 
 ___________________________________________________________________________________________________________
