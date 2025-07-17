@@ -149,4 +149,103 @@ This dataset is ideal for:
 ---
 
 
-___________________________________________________________________________________________________________
+## 📌 Tasks Performed
+
+This analysis follows standard EDA procedures and dives deep into customer behavior, sales trends, delivery patterns, and payment methods in **Target's Brazilian e-commerce operations**.
+
+---
+
+### 🔍 Initial Exploration
+
+* **Inspect Data Types**
+  Examine the data types of all columns in the `customers.csv` file to understand the structure.
+
+* **Time Range of Orders**
+  Identify the date range during which the orders were placed using the `order_purchase_timestamp` column in `orders.csv`.
+
+* **Customer Distribution by Geography**
+  Count the number of unique cities and states from where customers placed orders within the given period.
+
+---
+
+### 📈 Trend & Seasonal Analysis
+
+* **Yearly Order Growth**
+  Analyze whether there's a growing trend in the number of orders over the years (2016–2018).
+
+* **Monthly Seasonality**
+  Explore any recurring monthly patterns in order volumes.
+
+* **Order Time-of-Day Preferences**
+  Determine when Brazilian customers most commonly place orders based on purchase time:
+
+  | Time Range | Time of Day |
+  | ---------- | ----------- |
+  | 00–06 hrs  | Dawn        |
+  | 07–12 hrs  | Morning     |
+  | 13–18 hrs  | Afternoon   |
+  | 19–23 hrs  | Night       |
+
+---
+
+### 🌍 Regional Evolution of E-Commerce
+
+* **Monthly Orders by State**
+  Track the number of orders placed **month by month** across all states.
+
+* **Customer Distribution Across States**
+  Visualize how customers are distributed geographically within Brazil.
+
+---
+
+### 💰 Economic Impact & Price Trends
+
+* **Spending Trend (2017 → 2018)**
+  Analyze the percentage increase in **order costs** from **January to August** using the `payment_value` column in `payments.csv`.
+
+* **Order Value by State**
+
+  * Total and average **order price** per state
+  * Total and average **freight cost** per state
+
+---
+
+### 🚚 Delivery & Freight Analysis
+
+* **Delivery Time Metrics**
+  Calculate the delivery duration for each order using:
+
+  ```
+  time_to_deliver = order_delivered_customer_date - order_purchase_timestamp
+  ```
+
+* **Delivery Accuracy**
+  Measure the difference between actual and estimated delivery dates using:
+
+  ```
+  diff_estimated_delivery = order_delivered_customer_date - order_estimated_delivery_date
+  ```
+
+* **Freight Cost Insights**
+
+  * Identify the **top 5 states** with the **highest** and **lowest average freight values**
+
+* **Delivery Time Insights**
+
+  * Identify the **top 5 states** with the **fastest** and **slowest average delivery times**
+
+* **Delivery Ahead of Estimate**
+
+  * Find **top 5 states** where orders are delivered **significantly earlier** than estimated, based on the difference between actual and estimated delivery dates
+
+---
+
+### 💳 Payment Method Insights
+
+* **Monthly Payment Type Usage**
+  Get the **month-wise count** of orders based on **payment types** (e.g., credit card, debit card, boleto, etc.).
+
+* **Installment Trends**
+  Analyze the number of orders placed grouped by **installment count** (`payment_installments`), revealing how often customers opt for EMI-style purchases.
+
+---
